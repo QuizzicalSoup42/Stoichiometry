@@ -7,6 +7,118 @@ Don't steal it
 
 """
 
+#### -- DEFINING MASS FUNCTION (cause I use it a lot) -- ####
+
+def mass(full):
+    global molar_mass
+    print()
+    choice = input("Single element (1) or compound (2)? ")
+    while choice != "1" and choice != "2":
+        choice = input("Single element (1) or compound (2)? ")
+
+    ## - If element - ##
+
+    if choice == "1":
+        print()
+        print("What element?")
+        element = input("Write the element symbol. ").lower()
+
+        # - Error handling - #
+
+        while element not in elements:
+            element = input("Please enter a valid element symbol: ").lower()
+
+        # - Get weight from dictionary - #
+
+        molar_mass = elements[element]
+        print()
+        print("Molar mass of", element, "is", str(molar_mass) + "g/mol")
+        print()
+
+        ## - Variables - ##
+
+        print("Base equation:\nA * (B / C) = want\n\tA = have\n\tB = top factor\n\tC = bottom factor")
+        print()
+    
+        ## - Input - ##
+            
+        choice = input("Mols to grams (1) or grams to mols (2)? ")
+        while choice != "1" and choice != "2":
+            choice = input("Mols to grams (1) or grams to mols (2)? ")
+        
+        if choice == "1":
+            a = float(input("What is A (have)? "))
+            b = molar_mass
+            c = 1
+
+        if choice == "2":
+            a = float(input("What is A (have)? "))
+            b = 1
+            c = molar_mass
+
+    ## - If compound - ##
+
+    elif choice == "2":
+        print()
+        amount = int(input("How many elements are in the compound? (if multiple of one element just put it multiple times) "))
+
+        ## - Put elements in compound list - ##
+            
+        compound = []
+        print("Please enter the element symbols one at a time. ")
+        print("Ex: H₂O = h, o, o")
+        temp = 1
+        while temp <= amount:
+            element = input("").lower()
+
+            # - Error handling - #
+
+            while element not in elements:
+                element = input("Please enter a valid element symbol: ").lower()
+
+            compound.append(element)
+            temp += 1
+
+        ## - Calculate molar mass for compound - ##
+
+        molar_mass = 0
+        for i in compound:
+            molar_mass += elements[i]
+
+        print("Molar mass of", compound, "is", str(molar_mass) + "g/mol")
+            
+        #### -- MATH -- ####
+
+        ## - Variables - ##
+
+        print("Base equation:\nA * (B / C) = want\n\tA = have\n\tB = top factor\n\tC = bottom factor")
+        print()
+    
+        choice = input("Mols to grams (1) or grams to mols (2)? ")
+        while choice != "1" and choice != "2":
+            choice = input("Mols to grams (1) or grams to mols (2)? ")
+        
+        if choice == "1":
+            a = float(input("What is A (have)? "))
+            b = molar_mass
+            c = 1
+
+        if choice == "2":
+            a = float(input("What is A (have)? "))
+            b = 1
+            c = molar_mass
+
+    want = (a * b) / c
+
+    if full == True:
+
+        ## - Print answer - ##
+
+        print()
+        print("Answer:", str(want))
+        print()
+    
+
 #### -- ELEMENTS -- ####
 
 elements = {
@@ -36,119 +148,8 @@ while looping:
     #### -- MASS -- ####
 
     if choice == "1":
-        print()
-        choice = input("Single element (1) or compound (2)? ")
-        while choice != "1" and choice != "2":
-            choice = input("Single element (1) or compound (2)? ")
-
-        ## - If element - ##
-
-        if choice == "1":
-            print()
-            print("What element?")
-            element = input("Write the element symbol. ").lower()
-
-            # - Error handling - #
-
-            while element not in elements:
-                element = input("Please enter a valid element symbol: ").lower()
-
-            # - Get weight from dictionary - #
-
-            molar_mass = elements[element]
-            print()
-            print("Molar mass of", element, "is", str(molar_mass) + "g/mol")
-            print()
-
-            ## - Variables - ##
-
-            print("Base equation:\nA * (B / C) = want\n\tA = have\n\tB = top factor\n\tC = bottom factor")
-            print()
-    
-            ## - Input - ##
-            
-            choice = input("Mols to grams (1) or grams to mols (2)? ")
-            while choice != "1" and choice != "2":
-                choice = input("Mols to grams (1) or grams to mols (2)? ")
-        
-            if choice == "1":
-                a = float(input("What is A (have)? "))
-                b = molar_mass
-                c = 1
-
-            if choice == "2":
-                a = float(input("What is A (have)? "))
-                b = 1
-                c = molar_mass
-
-            ## - Math - ##
-
-            want = (a * b) / c
-
-            ## - Print answer - ##
-
-            print()
-            print("Answer:", str(want))
-            print()
-
-        ## - If compound - ##
-
-        elif choice == "2":
-            print()
-            amount = int(input("How many elements are in the compound? (if multiple of one element just put it multiple times) "))
-
-            ## - Put elements in compound list - ##
-            
-            compound = []
-            print("Please enter the element symbols one at a time. ")
-            print("Ex: H₂O = h, o, o")
-            temp = 1
-            while temp <= amount:
-                element = input("").lower()
-
-                # - Error handling - #
-
-                while element not in elements:
-                    element = input("Please enter a valid element symbol: ").lower()
-
-                compound.append(element)
-                temp += 1
-
-            ## - Calculate molar mass for compound - ##
-
-            molar_mass = 0
-            for i in compound:
-                molar_mass += elements[i]
-            
-            #### -- MATH -- ####
-
-            ## - Variables - ##
-
-            print("Base equation:\nA * (B / C) = want\n\tA = have\n\tB = top factor\n\tC = bottom factor")
-            print()
-    
-            choice = input("Mols to grams (1) or grams to mols (2)? ")
-            while choice != "1" and choice != "2":
-                choice = input("Mols to grams (1) or grams to mols (2)? ")
-        
-            if choice == "1":
-                a = float(input("What is A (have)? "))
-                b = molar_mass
-                c = 1
-
-            if choice == "2":
-                a = float(input("What is A (have)? "))
-                b = 1
-                c = molar_mass
-
-            want = (a * b) / c
-
-            ## - Print answer - ##
-
-            print()
-            print("Answer:", str(want))
-            print()
-
+        full = True
+        mass(full)
     
     #### -- VOLUME -- ####
 
@@ -233,6 +234,8 @@ while looping:
     #### -- MULTIPLE FACTORS -- ####
     
     if choice == "4":
+
+        full = False
         
         ## - Explanation - ##
         
@@ -257,65 +260,7 @@ while looping:
         #### -- IF MASS --> ??? -- ####
         
         if transfer1 == "1":
-            choice = input("Single element (1) or compound (2)? ")
-            while choice != "1" and choice != "2":
-                choice = input("Single element (1) or compound (2)? ")
-    
-            ## - If element - ##
-    
-            if choice == "1":
-                print()
-                print("What element?")
-                element = input("Write the element symbol. ").lower()
-                
-                # - Error handling - #
-
-                while element not in elements:
-                    element = input("Please enter a valid element symbol: ").lower()
-    
-                # - Get weight from dictionary - #
-    
-                molar_mass = elements[element]
-                print()
-                print("Molar mass of", element, "is", str(molar_mass) + "g/mol")
-                print()
-                
-            ## - If compound - ##
-                
-            elif choice == "2":
-                print()
-                amount = int(input("How many elements are in the compound? (if multiple of one element just put it multiple times) "))
-    
-                ## - Put elements in compound list - ##
-                
-                compound = []
-                print("Please enter the element symbols one at a time. ")
-                print("Ex: H₂O = h, o, o")
-                temp = 1
-                while temp <= amount:
-                    element = input("").lower()
-                    
-                    # - Error handling - #
-
-                    while element not in elements:
-                        element = input("Please enter a valid element symbol: ").lower()
-
-                    compound.append(element)
-                    temp += 1
-    
-                ## - Calculate molar mass for compound - ##
-    
-                molar_mass = 0
-                for i in compound:
-                    molar_mass += elements[i]
-                    
-            #### -- MATH -- ####
-            
-            a = float(input("What is A (have)? "))
-            b = molar_mass
-            c = 1
-            
-            mols = (a * b) / c
+            mass(full)
             
             ## - Mass --> Volume - ##
             
@@ -326,7 +271,7 @@ while looping:
                 d = 1
                 e = 22.4
                 
-                answer = (mols * d) / e
+                answer = (want * d) / e
                 
                 print()
                 print(answer, "liters")
@@ -340,7 +285,7 @@ while looping:
                 d = 6.02 * (10 ** 23)
                 e = 1
                 
-                answer = (mols * d) / e
+                answer = (want * d) / e
                 
                 print()
                 print(answer, "particles")
@@ -363,59 +308,8 @@ while looping:
             ## - Particles --> Mass - ##
             
             if transfer2 == "1":
-                choice = input("Single element (1) or compound (2)? ")
-                while choice != "1" and choice != "2":
-                    choice = input("Single element (1) or compound (2)? ")
-        
-                ## - If element - ##
-        
-                if choice == "1":
-                    print()
-                    print("What element?")
-                    element = input("Write the element symbol. ").lower()
+                mass(full)
 
-                    # - Error handling - #
-
-                    while element not in elements:
-                        element = input("Please enter a valid element symbol: ").lower()
-        
-                    # - Get weight from dictionary - #
-        
-                    molar_mass = elements[element]
-                    print()
-                    print("Molar mass of", element, "is", str(molar_mass) + "g/mol")
-                    print()
-                    
-                ## - If compound - ##
-                    
-                elif choice == "2":
-                    print()
-                    amount = int(input("How many elements are in the compound? (if multiple of one element just put it multiple times) "))
-        
-                    ## - Put elements in compound list - ##
-                    
-                    compound = []
-                    print("Please enter the element symbols one at a time. ")
-                    print("Ex: H₂O = h, o, o")
-
-                    temp = 1
-                    while temp <= amount:
-                        element = input("").lower()
-
-                        # - Error handling - #
-
-                        while element not in elements:
-                            element = input("Please enter a valid element symbol: ").lower()
-
-                        compound.append(element)
-                        temp += 1
-        
-                    ## - Calculate molar mass for compound - ##
-        
-                    molar_mass = 0
-                    for i in compound:
-                        molar_mass += elements[i]
-                
                 ## - MATH - ##
                 
                 d = 1
@@ -465,57 +359,7 @@ while looping:
             
             if transfer2 == "1":
                 
-                choice = input("Single element (1) or compound (2)? ")
-                while choice != "1" and choice != "2":
-                    choice = input("Single element (1) or compound (2)? ")
-        
-                ## - If element - ##
-        
-                if choice == "1":
-                    print()
-                    print("What element?")
-                    element = input("Write the element symbol. ").lower()
-
-                    # - Error handling - #
-
-                    while element not in elements:
-                        element = input("Please enter a valid element symbol: ").lower()
-        
-                    # - Get weight from dictionary - #
-        
-                    molar_mass = elements[element]
-                    print()
-                    print("Molar mass of", element, "is", str(molar_mass) + "g/mol")
-                    print()
-                    
-                ## - If compound - ##
-                    
-                elif choice == "2":
-                    print()
-                    amount = int(input("How many elements are in the compound? (if multiple of one element just put it multiple times) "))
-        
-                    ## - Put elements in compound list - ##
-                    
-                    compound = []
-                    print("Please enter the element symbols one at a time. ")
-                    print("Ex: H₂O = h, o, o")
-                    temp = 1
-                    while temp <= amount:
-                        element = input("").lower()
-                        
-                        # - Error handling - #
-
-                        while element not in elements:
-                            element = input("Please enter a valid element symbol: ").lower()
-
-                        compound.append(element)
-                        temp += 1
-        
-                    ## - Calculate molar mass for compound - ##
-        
-                    molar_mass = 0
-                    for i in compound:
-                        molar_mass += elements[i]
+                mass(full)
                         
                 ## - MATH - ##
                 
@@ -532,121 +376,21 @@ while looping:
 
     if choice == "5":
 
+        full = False
+
         ## - 1st reactant / product - ##
 
         print("What is the first reactant / product?")
         print("This is the one you have, even if it's a product.")
-        choice = input("Single element (1) or compound (2)? ")
 
-        # - Error handling - #
-
-        while choice != "1" and choice != "2":
-            choice = input("Single element (1) or compound (2)? ")
-        
-            ## - If element - ##
-            
-        if choice == "1":
-            print()
-            print("What element?")
-            element = input("Write the element symbol. ").lower()
-
-            # - Error handling - #
-
-            while element not in elements:
-                element = input("Please enter a valid element symbol: ").lower()
-        
-            # - Get weight from dictionary - #
-        
-            molar_mass = elements[element]
-            print()
-            print("Molar mass of", element, "is", str(molar_mass) + "g/mol")
-            print()
-                    
-        ## - If compound - ##
-                
-        elif choice == "2":
-            print()
-            amount = int(input("How many elements are in the compound? (if multiple of one element just put it multiple times) "))
-        
-            ## - Put elements in compound list - ##
-                    
-            compound = []
-            print("Please enter the element symbols one at a time. ")
-            print("Ex: H₂O = h, o, o")
-            temp = 1
-
-            while temp <= amount:
-                element = input("").lower()
-
-                # - Error handling - #
-
-                while element not in elements:
-                    element = input("Please enter a valid element symbol: ").lower()
-
-                compound.append(element)
-                temp += 1
-
-            ## - Calculate molar mass for compound - ##
-
-            molar_mass = 0
-            for i in compound:
-                molar_mass += elements[i]
+        mass(full)
 
         ## - 2nd reactant / product - ##
 
         print("What is the second reactant / product?")
         print("This is the one you DON'T have, even if it's a reactant.")
 
-        choice = input("Single element (1) or compound (2)? ")
-
-        while choice != "1" and choice != "2":
-            choice = input("Single element (1) or compound (2)? ")
-        
-            ## - If element - ##
-            
-        if choice == "1":
-            print()
-            print("What element?")
-            element = input("Write the element symbol. ").lower()
-            
-            # - Error handling - #
-
-            while element not in elements:
-                element = input("Please enter a valid element symbol: ").lower()
-        
-            # - Get weight from dictionary - #
-        
-            molar_mass2 = elements[element]
-                    
-        ## - If compound - ##
-                
-        elif choice == "2":
-            print()
-            amount = int(input("How many elements are in the compound? (if multiple of one element just put it multiple times) "))
-            
-            ## - Put elements in compound list - ##
-                    
-            compound = []
-            print("Please enter the element symbols one at a time. ")
-            print("Ex: H₂O = h, o, o")
-
-            temp = 1
-            while temp <= amount:
-                element = input("").lower()
-                
-                # - Error handling - #
-
-                while element not in elements:
-                    element = input("Please enter a valid element symbol: ").lower()
-
-                compound.append(element)
-                temp += 1
-
-            ## - Calculate molar mass for compound - ##
-
-            molar_mass2 = 0
-            for i in compound:
-                molar_mass2 += elements[i]
+        mass(full)
 
         ## - Input - ##
 
