@@ -13,7 +13,10 @@ def mass(full):
     global molar_mass
     print()
 
-    mass_input = input("Just molar mass (1) or full equation (2)? ")
+    mass_input = "2"
+
+    if full:
+        mass_input = input("Just molar mass (1) or full equation (2)? ")
 
     choice = input("Single element (1) or compound (2)? ")
     while choice != "1" and choice != "2":
