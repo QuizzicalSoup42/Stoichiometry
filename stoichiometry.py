@@ -12,6 +12,9 @@ Don't steal it
 def mass(full):
     global molar_mass
     print()
+
+    mass_input = input("Just molar mass (1) or full equation (2)? ")
+
     choice = input("Single element (1) or compound (2)? ")
     while choice != "1" and choice != "2":
         choice = input("Single element (1) or compound (2)? ")
@@ -35,26 +38,28 @@ def mass(full):
         print("Molar mass of", element, "is", str(molar_mass) + "g/mol")
         print()
 
-        ## - Variables - ##
+        if mass_input == "2":
 
-        print("Base equation:\nA * (B / C) = want\n\tA = have\n\tB = top factor\n\tC = bottom factor")
-        print()
-    
-        ## - Input - ##
-            
-        choice = input("Mols to grams (1) or grams to mols (2)? ")
-        while choice != "1" and choice != "2":
-            choice = input("Mols to grams (1) or grams to mols (2)? ")
+            ## - Variables - ##
+
+            print("Base equation:\nA * (B / C) = want\n\tA = have\n\tB = top factor\n\tC = bottom factor")
+            print()
         
-        if choice == "1":
-            a = float(input("What is A (have)? "))
-            b = molar_mass
-            c = 1
+            ## - Input - ##
+                
+            choice = input("Mols to grams (1) or grams to mols (2)? ")
+            while choice != "1" and choice != "2":
+                choice = input("Mols to grams (1) or grams to mols (2)? ")
+            
+            if choice == "1":
+                a = float(input("What is A (have)? "))
+                b = molar_mass
+                c = 1
 
-        if choice == "2":
-            a = float(input("What is A (have)? "))
-            b = 1
-            c = molar_mass
+            if choice == "2":
+                a = float(input("What is A (have)? "))
+                b = 1
+                c = molar_mass
 
     ## - If compound - ##
 
@@ -66,7 +71,7 @@ def mass(full):
             
         compound = []
         print("Please enter the element symbols one at a time. ")
-        print("Ex: H₂O = h, o, o")
+        print("Ex: H₂O = h [ENTER] h [ENTER] o [ENTER]")
         temp = 1
         while temp <= amount:
             element = input("").lower()
@@ -86,37 +91,41 @@ def mass(full):
             molar_mass += elements[i]
 
         print("Molar mass of", compound, "is", str(molar_mass) + "g/mol")
+
+        if mass_input == "2":
             
-        #### -- MATH -- ####
+            #### -- MATH -- ####
 
-        ## - Variables - ##
+            ## - Variables - ##
 
-        print("Base equation:\nA * (B / C) = want\n\tA = have\n\tB = top factor\n\tC = bottom factor")
-        print()
-    
-        choice = input("Mols to grams (1) or grams to mols (2)? ")
-        while choice != "1" and choice != "2":
-            choice = input("Mols to grams (1) or grams to mols (2)? ")
+            print("Base equation:\nA * (B / C) = want\n\tA = have\n\tB = top factor\n\tC = bottom factor")
+            print()
         
-        if choice == "1":
-            a = float(input("What is A (have)? "))
-            b = molar_mass
-            c = 1
+            choice = input("Mols to grams (1) or grams to mols (2)? ")
+            while choice != "1" and choice != "2":
+                choice = input("Mols to grams (1) or grams to mols (2)? ")
+            
+            if choice == "1":
+                a = float(input("What is A (have)? "))
+                b = molar_mass
+                c = 1
 
-        if choice == "2":
-            a = float(input("What is A (have)? "))
-            b = 1
-            c = molar_mass
+            if choice == "2":
+                a = float(input("What is A (have)? "))
+                b = 1
+                c = molar_mass
 
-    want = (a * b) / c
+    if mass_input == "2":
 
-    if full == True:
+        want = (a * b) / c
 
-        ## - Print answer - ##
+        if full == True:
 
-        print()
-        print("Answer:", str(want))
-        print()
+            ## - Print answer - ##
+
+            print()
+            print("Answer:", str(want))
+            print()
     
 
 #### -- ELEMENTS -- ####
