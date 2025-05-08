@@ -94,7 +94,7 @@ def mass(full, multiple):
 
                 element_list = entry.split()
                 if len(element_list) != 2:
-                    print("Invalid format. Please enter like: h 2")
+                    print("Invalid format. Please enter as such: h 2")
                     continue
 
                 elem = element_list[0]
@@ -104,7 +104,6 @@ def mass(full, multiple):
                     print("Invalid number format.")
                     continue
 
-                # - Error handling - #
                 if elem not in elements:
                     print("Unknown element symbol.")
                     continue
@@ -115,7 +114,7 @@ def mass(full, multiple):
                 comp_weight = elem_weight * amount_elem
 
                 compound_weight.append(comp_weight)
-                compound.append(elem)
+                compound.append((elem, amount_elem))
                 temp += 1
 
             ## - Calculate total molar mass of compound - ##
@@ -167,10 +166,8 @@ def mass(full, multiple):
         if choice == "1":
             print()
             print("What element?")
+
             element = input("Write the element symbol. ").lower()
-
-            # - Error handling - #
-
             while element not in elements:
                 element = input("Please enter a valid element symbol: ").lower()
 
@@ -186,6 +183,8 @@ def mass(full, multiple):
         elif choice == "2":
             print()
             amount = int(input("How many elements types are in the compound?\nEx: H₂O has 2 seperate elements (H and O), so input would be 2 "))
+            while type(amount) != int:
+                amount = int(input("Please enter a valid input. "))
 
             ## - Put elements in compound list - ##
                     
@@ -197,11 +196,11 @@ def mass(full, multiple):
 
             temp = 1
             while temp <= amount:
-                entry = input("").lower().strip()
+                entry = input().lower().strip()
 
                 element_list = entry.split()
                 if len(element_list) != 2:
-                    print("Invalid format. Please enter like: h 2")
+                    print("Invalid format. Please enter as such: h 2")
                     continue
 
                 elem = element_list[0]
@@ -223,7 +222,7 @@ def mass(full, multiple):
                 comp_weight = elem_weight * amount_elem
 
                 compound_weight.append(comp_weight)
-                compound.append(elem)
+                compound.append((elem, amount_elem))
                 temp += 1
 
             ## - Calculate total molar mass of compound - ##
